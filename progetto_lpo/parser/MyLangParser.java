@@ -304,7 +304,6 @@ public class MyLangParser implements Parser {
 					exp = new DictDelete(exp, index);
 				}
 				else{
-					//Exp value = parseExp();
 					exp = new DictUpdate(exp ,index, parseExp());
 					consume(CLOSE_S_PAR);
 				}
@@ -392,7 +391,7 @@ public class MyLangParser implements Parser {
 		consume(DOUBLE_DOT);  // Consuma ':'
 		final var value = parseExp();  // Parsing della seconda espressione, che rappresenta il valore
 		consume(CLOSE_S_PAR);  // Consuma ']'
-		return new DictLiteral(key, value);  // Ritorna un dizionario letterale
+		return new Dict(key, value);  // Ritorna un dizionario letterale
 	}
 
 }

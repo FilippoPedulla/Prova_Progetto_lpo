@@ -156,20 +156,41 @@ public class Typecheck implements Visitor<Type> {
 
 	@Override
 	public Type visitForStmt(Variable var, Exp exp, Block block) {
-	    // 1. Verifica che l'espressione exp sia iterabile (un dizionario o una lista)
-	    //exp.accept(this).checkIsIterableType();
-	    // 2. Entrare in un nuovo scope
+	    BOOL.checkEqual(exp.accept(this));
 	    env.enterScope();
-	    // 3. Dichiarare la variabile del ciclo
-	    env.dec(var, INT); // Dichiarazione della variabile nel nuovo scope
-	
-	
-	    // 4. Eseguire il blocco di codice per ogni elemento della collezione
+	    env.dec(var, INT);
 	    block.accept(this);
-	    // 5. Uscire dallo scope
 	    env.exitScope();
-	    // Il tipo del ciclo for è nullo, poiché non produce un valore
 	    return null;
+	}
+
+	@Override
+	public Type visitDict(Exp key, Exp value)
+	{
+		INT.checkEqual(key.accept(this));
+		//value.accept(this);
+		return DICT;
+	}
+
+	@Override
+	public Type visitDictUpdate(Exp dict, Exp exp, Exp value) {
+		INT.checkEqual(exp.accept(this));
+		//exp.accept(this).checkEqual(value.accept(this));
+		return null;
+	}
+
+	// da rivedere
+	@Override
+	public Type visitDictDelete(Exp dict, Exp index) {
+		INT.checkEqual(index.accept(this));
+		return null;
+	}
+
+	// da rivedere
+	@Override
+	public Type visitDictAccess(Exp dict, Exp index) {
+		INT.checkEqual(index.accept(this));
+		return null;
 	}
 
 }

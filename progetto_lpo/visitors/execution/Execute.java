@@ -168,4 +168,27 @@ public class Execute implements Visitor<Value> {
 		return null;
 	}
 
+	@Override
+	public Value visitDict(Exp key, Exp value)
+	{
+		return null;
+	}
+
+	@Override
+	public Value visitDictUpdate(Exp dict, Exp exp, Exp value) {
+		// return sbagliato
+		return null;
+	}
+
+	@Override
+	public Value visitDictDelete(Exp dict, Exp index) {
+		// return sbagliato
+		return null;
+	}
+
+	@Override
+	public Value visitDictAccess(Exp dict, Exp index) {
+		// return sbagliato
+		return null;
+	}
 }

@@ -48,4 +48,12 @@ public interface Visitor<T> {
 	T visitSnd(Exp exp);
 
 	T visitForStmt(Variable var, Exp exp, Block block);
+
+	T visitDict(Exp key, Exp value);
+
+	T visitDictUpdate(Exp dict, Exp exp, Exp value);
+
+	T visitDictDelete(Exp dict, Exp index);
+
+	T visitDictAccess(Exp dict, Exp index);
 }
