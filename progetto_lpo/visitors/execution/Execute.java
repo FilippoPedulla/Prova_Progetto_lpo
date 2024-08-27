@@ -154,4 +154,18 @@ public class Execute implements Visitor<Value> {
 		return exp.accept(this).toPair().getSndVal();
 	}
 
+	@Override
+	public Value visitForStmt(Variable var, Exp exp, Block block) {
+		// potrebbe avere senso da vedere se si deve utilizzare enterScope()
+		
+		// visito exp ed estraggo il numero di loop che il for deve fare 
+		int loop = exp.accept(this).toInt();
+		for(int i = 0; i < loop; i++)
+		{
+			env.update(var, new IntValue(i));
+			block.accept(this);
+		}
+		return null;
+	}
+
 }

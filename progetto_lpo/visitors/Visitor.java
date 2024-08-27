@@ -46,4 +46,6 @@ public interface Visitor<T> {
 	T visitFst(Exp exp);
 
 	T visitSnd(Exp exp);
+
+	T visitForStmt(Variable var, Exp exp, Block block);
 }

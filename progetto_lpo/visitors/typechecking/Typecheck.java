@@ -154,4 +154,22 @@ public class Typecheck implements Visitor<Type> {
 		return exp.accept(this).getSndPairType();
 	}
 
+	@Override
+	public Type visitForStmt(Variable var, Exp exp, Block block) {
+	    // 1. Verifica che l'espressione exp sia iterabile (un dizionario o una lista)
+	    //exp.accept(this).checkIsIterableType();
+	    // 2. Entrare in un nuovo scope
+	    env.enterScope();
+	    // 3. Dichiarare la variabile del ciclo
+	    env.dec(var, INT); // Dichiarazione della variabile nel nuovo scope
+	
+	
+	    // 4. Eseguire il blocco di codice per ogni elemento della collezione
+	    block.accept(this);
+	    // 5. Uscire dallo scope
+	    env.exitScope();
+	    // Il tipo del ciclo for è nullo, poiché non produce un valore
+	    return null;
+	}
+
 }
