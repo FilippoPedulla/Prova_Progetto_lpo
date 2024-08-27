@@ -290,7 +290,7 @@ public class MyLangParser implements Parser {
 		};
 	}
 
-	//Dict ::= Atom ('[' Exp (':' Exp?)? ']')*
+	//Dict ::= Atom ('[' Exp (':' Exp?)? ']')*					////////////////////////////////////////////////
 	private Exp parseDict() throws ParserException {
 		var exp = parseAtom();
 		while (tokenizer.tokenType() == OPEN_S_PAR){
@@ -383,7 +383,7 @@ public class MyLangParser implements Parser {
 	}
 
 	/*
-	* parses expressions delimited by parentheses Atom :: = '[' Exp ':' Exp ']'
+	* parses expressions delimited by parentheses Atom :: = '[' Exp ':' Exp ']'					//////////////////////////////
 	*/
 	private Exp parseSquarePar() throws ParserException {
 		consume(OPEN_S_PAR);  // Consuma '['
